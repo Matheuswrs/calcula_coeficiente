@@ -8,6 +8,7 @@ function pegaValor() {
 }
 
 function criaInputs() {
+  form.innerHTML = '';
   const inputs = pegaValor();
   for(let i = 1; i <= inputs; i++) {
     const section = document.createElement('section');
@@ -22,13 +23,17 @@ function criaInputs() {
     inputCriado.setAttribute('id', `input${i}`);
     inputCriado.setAttribute('onblur', 'pegaValores()');
     inputCriado.setAttribute('autocomplete', 'off');
-    inputCriado.setAttribute('onkeypress', 'return somenteNumeros(event)');
+    inputCriado.setAttribute('type', 'number');
+    inputCriado.setAttribute('min', '0');
+    inputCriado.setAttribute('max', '10');
+    inputCriado.setAttribute('step', '0.01');
 
     section.appendChild(labelCriado);
     section.appendChild(inputCriado);
 
     form.appendChild(section);
   }
+
   const botao = document.createElement('button');
   botao.setAttribute('id', 'botao');
   botao.setAttribute('type', 'submit');
