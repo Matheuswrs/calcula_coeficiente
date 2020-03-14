@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./src/css/style.css">
+  <title>Coeficiente de Aprovação</title>
+</head>
+<body>
+  <div class="container">
+    <form>
+      <label for="qtdMaterias">Digite seu número de matérias</label>
+      <input 
+        id="qtdMaterias"
+        name="qtdMaterias"
+        type="number"
+        placeholder="digite a quantidade de materias"
+        onblur="criaInputs()"
+        autocomplete="off"
+      />
+    </form>
+
+    <div class="containerInterno">
+      <form class="inputsAutomaticos wrap"></form>
+    </div>
+    <div id="resultado"></div>
+  </div>
+
+  <script src="./src/js/main.js"></script>
+  <script src="./src/js/validacoes.js"></script>
+</body>
+</html>
