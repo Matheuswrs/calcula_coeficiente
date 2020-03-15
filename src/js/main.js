@@ -16,7 +16,7 @@ function criaInputs() {
 
 
     const labelCriado = document.createElement('label');
-    labelCriado.appendChild(document.createTextNode(`Sua ${i}ª nota`));
+    labelCriado.appendChild(document.createTextNode(`Sua ${i}ª nota(entre 0 e 10)`));
     labelCriado.setAttribute('for', `input${i}`);
 
     const inputCriado = document.createElement('input');
@@ -56,13 +56,20 @@ function criaP() {
   return p;
 }
 
-const setResultado = (msg) => {
+const setResultado = (msg, msgMedia, isValid) => {
   const resultado = document.querySelector('#resultado');
   resultado.innerHTML = '';
   const p = criaP();
+  const pMedia = criaP();
+
+  if(isValid) pMedia.classList.add('acima_media');
+  if(!isValid) pMedia.classList.add('abaixo_media');
   
   p.innerHTML = msg;
+  pMedia.innerHTML = msgMedia;
+  
   resultado.appendChild(p);
+  resultado.appendChild(pMedia);
 }
 
 form.addEventListener('submit', (e) => {
@@ -75,8 +82,15 @@ form.addEventListener('submit', (e) => {
   resultado = resultado.toFixed(2);
 
   const msg = `Seu coeficiente de aprovação: ${resultado}`;
+  let msgMedia = 'Acima da média';
 
-  setResultado(msg);
+  if(resultado < 6) {
+    msgMedia = 'Abaixo da média';
+    setResultado(msg, msgMedia, false);
+    return
+  }
+
+  setResultado(msg, msgMedia, true);
 
   console.log(resultado);
 });
