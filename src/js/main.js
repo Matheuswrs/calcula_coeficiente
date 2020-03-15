@@ -16,12 +16,13 @@ function criaInputs() {
 
 
     const labelCriado = document.createElement('label');
-    labelCriado.appendChild(document.createTextNode(`Sua ${i}ª nota(entre 0 e 10)`));
+    labelCriado.appendChild(document.createTextNode(`Sua ${i}ª nota(entre 0 e 10).`));
     labelCriado.setAttribute('for', `input${i}`);
 
     const inputCriado = document.createElement('input');
     inputCriado.setAttribute('id', `input${i}`);
     inputCriado.setAttribute('onblur', 'pegaValores()');
+    inputCriado.setAttribute('placeholder', `Digite sua ${i}ª nota aqui...`);
     inputCriado.setAttribute('autocomplete', 'off');
     inputCriado.setAttribute('type', 'number');
     inputCriado.setAttribute('min', '0');
@@ -67,7 +68,7 @@ const setResultado = (msg, msgMedia, isValid) => {
   
   p.innerHTML = msg;
   pMedia.innerHTML = msgMedia;
-  
+
   resultado.appendChild(p);
   resultado.appendChild(pMedia);
 }
@@ -87,6 +88,12 @@ form.addEventListener('submit', (e) => {
   if(resultado < 6) {
     msgMedia = 'Abaixo da média';
     setResultado(msg, msgMedia, false);
+    return
+  }
+
+  if(resultado === 6) {
+    msgMedia = 'Na média';
+    setResultado(msg, msgMedia, true);
     return
   }
 
